@@ -1,0 +1,9 @@
+D:\dev\code_git\BOLT_DOTNET\HelloBolt.NET\ComicDown.UI.Core\obj\Release\ComicDown.UI.Core.BackGroundForm.resources
+D:\dev\code_git\BOLT_DOTNET\HelloBolt.NET\ComicDown.UI.Core\obj\Release\ComicDown.UI.Core.csproj.GenerateResource.Cache
+D:\dev\code_git\BOLT_DOTNET\HelloBolt.NET\ComicDown.UI.Core\bin\Release\NET40\ComicDown.UI.Core.dll
+D:\dev\code_git\BOLT_DOTNET\HelloBolt.NET\ComicDown.UI.Core\bin\Release\NET40\ComicDown.UI.Core.pdb
+D:\dev\code_git\BOLT_DOTNET\HelloBolt.NET\ComicDown.UI.Core\obj\Release\ComicDown.UI.Core.dll
+D:\dev\code_git\BOLT_DOTNET\HelloBolt.NET\ComicDown.UI.Core\obj\Release\ComicDown.UI.Core.pdb
+D:\dev\code_git\BOLT_DOTNET\HelloBolt.NET\ComicDown.UI.Core\obj\Release\ComicDown.UI.Core.csprojResolveAssemblyReference.cache
+D:\dev\code_git\BOLT_DOTNET\HelloBolt.NET\Bin\Release\ComicDown.UI.Core.dll
+D:\dev\code_git\BOLT_DOTNET\HelloBolt.NET\Bin\Release\ComicDown.UI.Core.pdb

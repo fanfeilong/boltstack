@@ -1,0 +1,19 @@
+
+---------------------
+==BOLT.NET 更新说明==
+---------------------
+
+★v1.0.1.0
+---------------------
+  ◇更新时间:20130722
+  ◇更新内容：
+    →XLBolt的Run方法添加了可选参数，用来指定是否初始化XGP
+    →XLBolt类添加AddMesssageFilter/RemoveMessageFilter
+    →LuaExtension添加PushBitmap、GetBitmap扩展
+    →LuaExtension添加GetTuple扩展方法，支持从Lua端返回元素个数不超过6个的table
+    →改进了后台窗口的实现代码
+    →将P/Invoke代码按分类分离成Win32.cs、XLGraphics.cs、XLLuaRuntime.cs、XLUE.cs
+    →小幅改进了下代码质量
+---------------------
+
+
