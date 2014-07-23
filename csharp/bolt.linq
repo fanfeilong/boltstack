@@ -1,6 +1,6 @@
 <Query Kind="Program">
   <Output>DataGrids</Output>
-  <Reference Relative="Bin\Release\BOLTStack.dll">D:\dev\code_git\boltstack\Bin\Release\BOLTStack.dll</Reference>
+  <Reference Relative="Bin\Release\BOLTStack.dll">D:\dev\code_git\boltstack\csharp\Bin\Release\BOLTStack.dll</Reference>
   <Namespace>BOLTStack</Namespace>
   <IncludePredicateBuilder>true</IncludePredicateBuilder>
 </Query>
