@@ -1,3 +1,7 @@
 /HelloBolt.NET.suo
 /HelloBolt.NET.csproj.user
 /HelloBolt.NET.sln.docstates.suo
+/*.suo
+/Bin/Debug/Test.vshost.exe
+/BOLTStack/obj
+/Test/obj

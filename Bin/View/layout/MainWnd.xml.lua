@@ -1,4 +1,10 @@
---lua文件必须是UTF-8编码的(最好无BOM头)
+------------------------------------------------
+--//lua文件必须是UTF-8编码的(最好无BOM头)
+--//BOLT测试代码
+------------------------------------------------
+
+local util = XLGetObject("UserQuery.Util")
+
 function close_btn_OnLButtonDown(self,name)
 	---创建内置动画的实例
 	local aniFactory = XLGetObject("Xunlei.UIEngine.AnimationFactory")
@@ -31,8 +37,7 @@ function close_btn_OnLButtonDown(self,name)
 		if newState == 4 then
 		----os.exit 效果等同于windows的exit函数，不推荐实际应用中直接使用
 			os.exit()
-            local app = XLGetObject("HelloBolt.NET.Application")
-            app:Quit()
+            util:Quit()
 		end
 	end
 
@@ -47,32 +52,19 @@ function close_btn_OnLButtonDown(self,name)
 end
 
 function OnInitControl(self)
-	local owner = self:GetOwner()
-	
-	--动态创建一个ImageObject,这个Object在XML里没定义
-	local objFactory = XLGetObject("Xunlei.UIEngine.ObjectFactory")
-	local newIcon = objFactory:CreateUIObject("icon2","ImageObject")
-	local xarManager = XLGetObject("Xunlei.UIEngine.XARManager")
-	newIcon:SetResProvider(xarManager)
-	newIcon:SetObjPos(45,165,45+70,165+70)
-	newIcon:SetResID("app.icon2")
-	local function onClickIcon()
-		XLMessageBox("Don't touch me!")
+	local objTree  = self:GetOwner()
+	local editObj = objTree:GetUIObject("edit")
+	editObj:SetText("nihao-------------------------------------")
+end
+
+function Title_InitControl(self)
+	local titleObj = self
+	titleObj:SetObjPos2("father.width/2-86/2","8","86","24")
+	if titleObj.GetObjPosExp then
+		util:WriteLine("titleObj:GetObjPosExp is not nil")
 	end
-	--绑定鼠标事件的响应函数到对象
-	newIcon:AttachListener("OnLButtonDown",true,onClickIcon)
-	self:AddChild(newIcon)
-	
-	--创建一个自定义动画，作用在刚刚动态创建的ImageObject上
-	local aniFactory = XLGetObject("Xunlei.UIEngine.AnimationFactory")
-	myAni = aniFactory:CreateAnimation("HelloBolt.ani")
-	--一直运行的动画就是一个TotalTime很长的动画
-	myAni:SetTotalTime(9999999) 
-	local aniAttr = myAni:GetAttribute()
-	aniAttr.obj = newIcon
-	owner:AddAnimation(myAni)
-	myAni:Resume()
-	
+	local x,y,w,h  = titleObj:GetObjPosExp()
+	util:WriteLine(string.format("pos expression:x=%s,y=%s,w=%s,h=%s",x,y,w,h))
 end
 
 function MSG_OnMouseMove(self)
@@ -89,16 +81,27 @@ function userdefine_btn_OnClick(self,name)
     -----------------------
     --BOLT使用C#注册的单例和工厂类示例：
     -----------------------
-    local app = XLGetObject("HelloBolt.NET.Application")
-    app:WriteLine("开始计算加法：")
-    app:Write("a+b=")
+    util:WriteLine("开始计算加法：")
+    util:Write("a+b=")
 
-    local myClassFactory = XLGetObject("HelloBolt.NET.MyClass.Factory")
+    local myClassFactory = XLGetObject("UserQuery.MyFactory.Factory")
 	local myClass = myClassFactory:CreateInstance()
 	myClass:AttachResultListener(function(result)
-        app:Write(string.format("%s\n",result))
-        XLMessageBox("result is "..result)
-        app:WriteLine("计算结束！")
+        util:Write(string.format("%s\n",result))
+        util:WriteLine("result is "..result)
+        util:WriteLine("计算结束！")
     end)
 	myClass:Add(100,200)
+end
+
+function OnSelChange(self)
+	local selBegin,selEnd=self:GetSel()
+	
+	local lineNO=self:LineFromChar(selBegin)
+	util:WriteLine(selBegin..' '..lineNO)
+	local lineBegin = self:LineIndex(lineNO)
+	hang=thisWnd:GetObject("state"):GetObject("hang")
+	hang:SetText(lineNO)
+	lie=thisWnd:GetObject("state"):GetObject("lie")
+	lie:SetText(selBegin - lineBegin)
 end

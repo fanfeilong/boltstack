@@ -40,6 +40,7 @@
 			<alpha>255</alpha>
 		</attr>
 		<children>
+
 			<obj id="msg" class="TextObject">
 				<attr>
 					<left>135</left>
@@ -66,9 +67,9 @@
 					<zorder>100</zorder>
 				</attr>
 				<children>
+					<!--
 					<obj id="title.text" class="TextObject">
 						<attr>
-							<!-- 使用表达式局中-->
 							<left>father.width/2-86/2</left> 
 							<top>8</top>
 							<width>86</width>
@@ -77,27 +78,27 @@
 							<textcolor>system.white</textcolor>
 							<font>default.font</font>
 						</attr>
+						<eventlist>
+							<event name="OnLButtonUp" file="MainWnd.xml.lua" func="Title_InitControl"/>
+						</eventlist>
 					</obj>
-			
+					-->
+					<obj id="edit" class="EditObject">
+						<attr>
+							<left>father.width/2-86/2</left>
+							<top>8</top>
+							<width>86</width>
+							<height>24</height>			
+							<text>Hello,Bolt!lkajfdlajlfakdjflasfjlkasjfksladfjsaldf</text>
+						</attr>
+					</obj>
 				</children>
-			</obj>
-			
-			<obj id="icon" class="ImageObject">
-				<attr>
-					<left>45</left>
-					<top>100</top>
-					<width>60</width>
-					<height>60</height>
-					<image>app.icon</image>
-					<!--设置成拉伸模式,ImageObject默认是不会拉伸其对应的位图的-->
-					<drawmode>1</drawmode>
-				</attr>
 			</obj>
 			
 			<obj id="close.btn" class="LayoutObject">
 				<attr>
-					<left>178</left>
-					<top>214</top>
+					<left>father.width-80-10</left>
+					<top>father.height-30-10</top>
 					<width>80</width>
 					<height>30</height>
 				</attr>
@@ -127,21 +128,6 @@
 				</children>
 				<eventlist>
 					<event name="OnLButtonDown" file="MainWnd.xml.lua" func="close_btn_OnLButtonDown" />
-				</eventlist>
-			</obj>
-			
-			<!--使用一个其它XML里定义的Control：bolt.button-->
-			<obj id="userdefine.btn" class="HelloBolt.button">
-				<attr>
-					<left>260</left>
-					<top>214</top>
-					<width>126</width>
-					<height>44</height>
-					<NormalBkgID>button.normal</NormalBkgID>
-					<Text>点我</Text>
-				</attr>
-				<eventlist>
-					<event name="OnClick" file="MainWnd.xml.lua" func="userdefine_btn_OnClick"/>
 				</eventlist>
 			</obj>
 		</children>
