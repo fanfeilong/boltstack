@@ -1,0 +1,266 @@
+<xlue>
+    <objtreetemplate id="main.tree" class="">
+        <attr>
+            <left>-200</left>
+            <top>-200</top>
+            <width>2000</width>
+            <height>2000</height>
+        </attr>
+
+        <obj id="main.bkg" class="FillObject">
+            <attr>
+                <left>0</left>
+                <top>0</top>
+                <width>800</width>
+                <height>600</height>
+                <srccolor>system.lightgray</srccolor>
+                <destcolor>system.lightgray</destcolor>
+            </attr>
+            <children>
+                <!--标题栏，可以模拟App的Titlebar-->
+                <obj id="main.caption" class="CaptionObject">
+                    <attr>
+                        <zorder>100</zorder>
+                        <left>0</left>
+                        <top>0</top>
+                        <width>father.width</width>
+                        <height>32</height>
+                    </attr>
+                    <children>
+                        <obj id="main.title" class="TextObject">
+                            <attr>
+                                <left>20</left>
+                                <top>6</top>
+                                <width>father.width</width>
+                                <height>24</height>
+                                <valign>left</valign>
+                                <text>Xunlei P2P Simulator</text>
+                                <textcolor>system.normal.front</textcolor>
+                                <font>default.font</font>
+                            </attr>
+                        </obj>
+                        <obj id="main.close" class="Button">
+                            <attr>
+                                <zorder>200</zorder>
+                                <left>father.width-50</left>
+                                <top>6</top>
+                                <width>40</width>
+                                <height>24</height>
+                                <text>Q</text>
+                            </attr>
+                            <eventlist>
+                                <event name="OnClick" file="MainWnd.xml.lua" func="MainWnd_CloseButtonClick"/>
+                            </eventlist>
+                        </obj>
+                    </children>
+
+                </obj>
+                <!--分割线-->
+                <obj id="main.headline" class="LineObject">
+                    <attr>
+                        <zorder>200</zorder>
+                        <left>0</left>
+                        <top>32</top>
+                        <width>father.width</width>
+                        <height>20</height>
+                        <pen>pen.solid</pen>
+                        <color>system.white</color>
+                        <srcpt>0,1</srcpt>
+                        <destpt>father.width,1</destpt>
+                    </attr>
+                </obj>
+                <!--主面板-->
+                <obj id="main.view" class="LayoutObject">
+                    <attr>
+                        <left>0</left>
+                        <top>33</top>
+                        <width>father.width</width>
+                        <height>father.height-33</height>
+                    </attr>
+                    <children>
+                        <obj id="main.start" class="Button">
+                            <attr>
+                                <left>20</left>
+                                <top>20</top>
+                                <width>50</width>
+                                <height>24</height>
+                                <text>启动</text>
+                            </attr>
+                            <eventlist>
+                                <event name="OnClick" file="MainWnd.xml.lua" func="MainWnd_StartButtonClick"/>
+                            </eventlist>
+                        </obj>
+                        <obj id="main.start" class="Button">
+                            <attr>
+                                <left>73</left>
+                                <top>20</top>
+                                <width>50</width>
+                                <height>24</height>
+                                <text>停止</text>
+                            </attr>
+                            <eventlist>
+                                <event name="OnClick" file="MainWnd.xml.lua" func="MainWnd_StopButtonClick"/>
+                            </eventlist>
+                        </obj>
+                        <obj id="main.peerid.template.lable" class="TextObject">
+                            <attr>
+                                <left>140</left>
+                                <top>20</top>
+                                <width>100</width>
+                                <height>24</height>
+                                <valign>center</valign>
+                                <textcolor>system.normal.front</textcolor>
+                                <text>PeerId模板:</text>
+                            </attr>
+                        </obj>
+                        <obj id="main.peerid.template" class="EditObject">
+                            <attr>
+                                <left>140+70</left>
+                                <top>20</top>
+                                <width>103</width>
+                                <height>24</height>
+                                <text>FFFFFFFFFF%.6d</text>
+                                <viewinset>3,3,3,3</viewinset>
+                            </attr>
+                        </obj>
+                        <obj id="main.peerid.count.lable" class="TextObject">
+                            <attr>
+                                <left>140+100*2</left>
+                                <top>20</top>
+                                <width>100</width>
+                                <height>24</height>
+                                <textcolor>system.normal.front</textcolor>
+                                <text>Peer总数:</text>
+                                <valign>center</valign>
+
+                            </attr>
+                        </obj>
+                        <obj id="main.peerid.count" class="EditObject">
+                            <attr>
+                                <left>140+100*2+60</left>
+                                <top>20</top>
+                                <width>50</width>
+                                <height>24</height>
+                                <text>4</text>
+                                <number>1</number>
+                                <viewinset>3,3,3,3</viewinset>
+                            </attr>
+                        </obj>
+                        <obj id="main.clear" class="Button">
+                            <attr>
+                                <left>140+100*2+60+53</left>
+                                <top>20</top>
+                                <width>50</width>
+                                <height>24</height>
+                                <text>清空</text>
+                            </attr>
+                            <eventlist>
+                                <event name="OnClick" file="MainWnd.xml.lua" func="MainWnd_ClearButtonClick"/>
+                            </eventlist>
+                        </obj>
+                        <obj id="main.downloader.lable" class="TextObject">
+                            <attr>
+                                <left>20</left>
+                                <top>50</top>
+                                <width>75</width>
+                                <height>24</height>
+                                <textcolor>system.normal.front</textcolor>
+                                <text>下载器路径:</text>
+                                <valign>center</valign>
+
+                            </attr>
+                        </obj>
+                        <obj id="main.downloader.path" class="EditObject">
+                            <attr>
+                                <left>95</left>
+                                <top>50</top>
+                                <width>father.width-300</width>
+                                <height>24</height>
+                                <text>D:\dev\code_svn\xunlei_p2p\trunk\source\bin\ProductRelease\x64\XLDownloaderTest.exe</text>
+                                <viewinset>3,3,3,3</viewinset>
+                            </attr>
+                        </obj>
+                        <obj id="main.task.url.lable" class="TextObject">
+                            <attr>
+                                <left>20</left>
+                                <top>80</top>
+                                <width>75</width>
+                                <height>24</height>
+                                <textcolor>system.normal.front</textcolor>
+                                <text>测试下载文件:</text>
+                                <valign>center</valign>
+                            </attr>
+                        </obj>
+                        <obj id="main.task.url.path" class="EditObject">
+                            <attr>
+                                <left>95</left>
+                                <top>80</top>
+                                <width>father.width-300</width>
+                                <height>24</height>
+                                <text>D:\Thunder.exe</text>
+                                <viewinset>3,3,3,3</viewinset>
+                            </attr>
+                        </obj>
+                        <obj id="main.task.save.lable" class="TextObject">
+                            <attr>
+                                <left>20</left>
+                                <top>110</top>
+                                <width>75</width>
+                                <height>24</height>
+                                <textcolor>system.normal.front</textcolor>
+                                <text>保存路径:</text>
+                                <valign>center</valign>
+                            </attr>
+                        </obj>
+                        <obj id="main.task.save.path" class="EditObject">
+                            <attr>
+                                <left>95</left>
+                                <top>110</top>
+                                <width>father.width-300</width>
+                                <height>24</height>
+                                <text>D:\\</text>
+                                <viewinset>3,3,3,3</viewinset>
+                            </attr>
+                        </obj>
+                        <obj id="main.logview" class="LogPanel">
+                            <attr>
+                                <left>20</left>
+                                <top>140</top>
+                                <width>father.width-20*2</width>
+                                <height>father.height-140-20</height>
+                            </attr>
+                        </obj>
+                    </children>
+                </obj>
+            </children>
+            <eventlist>
+                <event name="MainWnd_InitControl"/>
+            </eventlist>
+        </obj>
+    </objtreetemplate>
+
+    <hostwndtemplate id="main.wnd" class="FrameHostWnd">
+        <attr>
+            <title>Bolt</title>
+            <layered>1</layered>
+            <left>200</left>
+            <top>100</top>
+            <width>800</width>
+            <height>600</height>
+            <topmost>0</topmost>
+            <visible>1</visible>
+            <enable>1</enable>
+            <maxbox>0</maxbox>
+            <minbox>0</minbox>
+            <minwidth>100</minwidth>
+            <minheight>72</minheight>
+            <maxwidth>1000</maxwidth>
+            <maxheight>720</maxheight>
+            <appwindow>1</appwindow>
+        </attr>
+        <eventlist>
+            <event name="OnCreate" file="MainWnd.xml.lua" func="MainWnd_Create"/>
+            <event name="OnSize" file="MainWnd.xml.lua" func="MainWnd_Size"/>
+        </eventlist>
+    </hostwndtemplate>
+</xlue>

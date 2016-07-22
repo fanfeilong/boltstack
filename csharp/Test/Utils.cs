@@ -6,7 +6,6 @@ namespace UserQuery
     [LuaClass(BOLTStack.CreatePolicy.Singleton)]
     internal sealed partial class Utils : LuaBaseClass<Utils, Utils>
     {
-
         [LuaClassMethod]
         private static int WriteLine(IntPtr L)
         {

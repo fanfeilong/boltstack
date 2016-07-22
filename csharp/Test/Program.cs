@@ -9,7 +9,7 @@ namespace UserQuery
         [STAThread]
         static void Main()
         {
-            var xarSearchPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\");
+            var xarSearchPath = AppDomain.CurrentDomain.BaseDirectory;
             Console.WriteLine(xarSearchPath);
             var xarName = "View";
             BOLTStack.Application.Run(xarSearchPath, xarName, () =>

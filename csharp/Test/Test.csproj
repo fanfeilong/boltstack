@@ -6,7 +6,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{515AB301-2B86-4AD6-9F61-3B1B7D238C3C}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Test</RootNamespace>
     <AssemblyName>Test</AssemblyName>
@@ -36,6 +36,9 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>1439463680_services.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
@@ -63,6 +66,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="View\layout\Button.lua" />
+    <None Include="View\layout\MainWnd.xml.lua" />
+    <None Include="View\nametable.cfg" />
+    <None Include="View\onload.lua" />
+    <None Include="View\package.cfg" />
+    <None Include="View\res\default\resource.cfg" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BOLTStack\BOLTStack.csproj">
@@ -70,8 +79,24 @@
       <Name>BOLTStack</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="1439463680_services.ico" />
+    <Content Include="View\layout\Button.xml" />
+    <Content Include="View\layout\MainWnd.xml" />
+    <Content Include="View\res\default\bitmap.xml" />
+    <Content Include="View\res\default\bitmap\bkg.png" />
+    <Content Include="View\res\default\bitmap\btn_login_down.png" />
+    <Content Include="View\res\default\bitmap\btn_login_nor.png" />
+    <Content Include="View\res\default\bitmap\btn_login_over.png" />
+    <Content Include="View\res\default\bitmap\icon.png" />
+    <Content Include="View\res\default\bitmap\Shutdown.png" />
+    <Content Include="View\res\default\color.xml" />
+    <Content Include="View\res\default\font.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /y /s $(ProjectDir)View $(TargetDir)View</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

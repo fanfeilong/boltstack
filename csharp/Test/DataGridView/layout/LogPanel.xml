@@ -1,0 +1,172 @@
+<xlue>
+    <control class="LogPanel">
+        <!--方法定义-->
+        <method_def>
+            <BeginUpdate file="LogPanel.xml.lua" func="BeginUpdate" />
+            <EndUpdate   file="LogPanel.xml.lua" func="EndUpdate"  />
+            <AppendItem  file="LogPanel.xml.lua" func="AppendItem"  />
+            <Clear       file="LogPanel.xml.lua" func="Clear"  />
+        </method_def>
+
+        <!--布局和交互-->
+        <objtemplate>
+            <children>
+                <obj id="logpanel.head" class="FillObject">
+                    <attr>
+                        <width>father.width</width>
+                        <height>24</height>
+                        <limitchild>1</limitchild>
+                    </attr>
+                    <children>
+                        <obj id="logitem.id" class="TextObject">
+                            <attr>
+                                <left>3</left>
+                                <top>0</top>
+                                <width>40</width>
+                                <height>father.height</height>
+                                <halign>center</halign>
+                                <valign>center</valign>
+                                <text>ID</text>
+                            </attr>
+                        </obj>
+                        <obj id="logitem.type" class="TextObject">
+                            <attr>
+                                <left>40+3</left>
+                                <top>0</top>
+                                <width>30</width>
+                                <height>father.height</height>
+                                <halign>center</halign>
+                                <valign>center</valign>
+                                <text>TYPE</text>
+                            </attr>
+                        </obj>
+                        <obj id="logitem.ip" class="TextObject">
+                            <attr>
+                                <left>40+30+3*2</left>
+                                <top>0</top>
+                                <width>80</width>
+                                <height>father.height</height>
+                                <halign>center</halign>
+                                <valign>center</valign>
+                                <text>IP</text>
+                            </attr>
+                        </obj>
+                        <obj id="logitem.port" class="TextObject">
+                            <attr>
+                                <left>40+30+80+3*3</left>
+                                <top>0</top>
+                                <width>40</width>
+                                <height>father.height</height>
+                                <halign>center</halign>
+                                <valign>center</valign>
+                                <text>PORT</text>
+                            </attr>
+                        </obj>
+                        <obj id="logitem.log" class="TextObject">
+                            <attr>
+                                <left>40+30+80+40+3*4</left>
+                                <top>0</top>
+                                <width>father.width-(40+20+80+40+3*4)</width>
+                                <height>father.height</height>
+                                <valign>center</valign>
+                                <text>LOG</text>
+                            </attr>
+                        </obj>
+                    </children>
+                </obj>
+                <obj id="logpanel.lings" class="LayoutObject">
+                    <attr>
+                        <zorder>800</zorder>
+                        <width>father.widht</width>
+                        <height>father.height</height>
+                    </attr>
+                    <children>
+                        <obj id="line.id" class="LineObject">
+                            <attr>
+                                <left>40+3</left>
+                                <top>0</top>
+                                <width>1</width>
+                                <height>father.height</height>
+                                <srcpt>0,0</srcpt>
+                                <destpt>0,height</destpt>
+                                <pen>pen.dot</pen>
+                                <color>system.gray</color>
+                            </attr>
+                        </obj>
+                        <obj id="line.type" class="LineObject">
+                            <attr>
+                                <left>40+30+3*2</left>
+                                <top>0</top>
+                                <width>1</width>
+                                <height>father.height</height>
+                                <srcpt>0,0</srcpt>
+                                <destpt>0,height</destpt>
+                                <pen>pen.dot</pen>
+                                <color>system.gray</color>
+                            </attr>
+                        </obj>
+                        <obj id="line.ip" class="LineObject">
+                            <attr>
+                                <left>40+30+80+3*3</left>
+                                <top>0</top>
+                                <width>1</width>
+                                <height>father.height</height>
+                                <srcpt>0,0</srcpt>
+                                <destpt>0,height</destpt>
+                                <pen>pen.dot</pen>
+                                <color>system.gray</color>
+                            </attr>
+                        </obj>
+                        <obj id="line.port" class="LineObject">
+                            <attr>
+                                <left>40+30+80+40+3*4</left>
+                                <top>0</top>
+                                <width>1</width>
+                                <height>father.height</height>
+                                <srcpt>0,0</srcpt>
+                                <destpt>0,height</destpt>
+                                <pen>pen.dot</pen>
+                                <color>system.gray</color>
+                            </attr>
+                        </obj>
+                        <obj id="line.bottom" class="LineObject">
+                            <attr>
+                                <left>0</left>
+                                <top>father.height-1</top>
+                                <width>father.width</width>
+                                <height>1</height>
+                                <srcpt>0,0</srcpt>
+                                <destpt>width,0</destpt>
+                                <pen>pen.dot</pen>
+                                <color>system.gray</color>
+                            </attr>
+                        </obj>
+                    </children>
+                </obj>
+                <obj id="logpanel.bkg" class="FillObject">
+                    <attr>
+                        <left>0</left>
+                        <top>25</top>
+                        <width>father.width</width>
+                        <height>father.height-25</height>
+                        <limitchild>1</limitchild>
+                    </attr>
+                    <children>
+
+                    </children>
+                </obj>
+            </children>
+            <eventlist>
+                <event name="OnInitControl"   file="LogPanel.xml.lua" func="LogPanel_InitControl" />
+                <event name="OnVisibleChange" file="LogPanel.xml.lua" func="LogPanel_VisibleChange"/>
+                <event name="OnEnableChange"  file="LogPanel.xml.lua" func="LogPanel_EnableChange"/>
+                <event name="OnFocusChange"   file="LogPanel.xml.lua" func="LogPanel_FocusChange" />
+                <event name="OnLButtonDown"   file="LogPanel.xml.lua" func="LogPanel_LButtonDown" />
+                <event name="OnLButtonUp"     file="LogPanel.xml.lua" func="LogPanel_LButtonUp" />
+                <event name="OnControlMouseEnter" file="LogPanel.xml.lua" func="LogPanel_ControlMouseEnter" />
+                <event name="OnControlMouseLeave" file="LogPanel.xml.lua" func="LogPanel_ControlMouseLeave" />
+                <event name="OnControlMouseWheel" file="LogPanel.xml.lua" func="LogPanel_ControlMouseWheel" />
+            </eventlist>
+        </objtemplate>
+    </control>
+</xlue>

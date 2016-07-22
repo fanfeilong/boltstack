@@ -1,0 +1,116 @@
+<xlue>
+    <control class="Button">
+        <!--属性定义-->
+        <attr_def>
+            <!--按钮状态: normal, hover, down, disable-->
+            <attr name="status" type="string">
+                <default>normal</default>
+            </attr>
+
+            <!--按钮样式: 普通模式-->
+            <attr name="normalbackcolor" type="string">
+                <default>system.normal.back</default>
+            </attr>
+            <attr name="normalfrontcolor" type="string">
+                <default>system.normal.front</default>
+            </attr>
+            <attr name="normalfont" type="string">
+                <default>system.normal.font</default>
+            </attr>
+
+            <!--按钮样式: 高亮模式-->
+            <attr name="hoverbackcolor" type="string">
+                <default>system.hover.back</default>
+            </attr>
+            <attr name="hoverfrontcolor" type="string">
+                <default>system.hover.front</default>
+            </attr>
+            <attr name="hoverfont" type="string">
+                <default>system.hover.font</default>
+            </attr>
+
+            <!--按钮样式: 按下模式-->
+            <attr name="downbackcolor" type="string">
+                <default>system.down.back</default>
+            </attr>
+            <attr name="downfrontcolor" type="string">
+                <default>system.down.front</default>
+            </attr>
+            <attr name="downfont" type="string">
+                <default>system.down.font</default>
+            </attr>
+
+            <!--按钮样式: 禁用模式-->
+            <attr name="disablebackcolor" type="string">
+                <default>system.disable.back</default>
+            </attr>
+            <attr name="disablefrontcolor" type="string">
+                <default>system.disable.front</default>
+            </attr>
+            <attr name="disablefont" type="string">
+                <default>system.disable.font</default>
+            </attr>
+
+            <!--按钮文本:内容、位置-->
+            <attr name="text" type="string">
+                <default></default>
+            </attr>
+            <attr name="textleft" type="int">
+                <default>0</default>
+            </attr>
+            <attr name="texttop" type="int">
+                <default>0</default>
+            </attr>
+
+        </attr_def>
+
+        <!--方法定义-->
+        <method_def>
+            <SetText     file="Button.xml.lua" func="SetText"    />
+            <GetText     file="Button.xml.lua" func="GetText"    />
+            <SetTextPos  file="Button.xml.lua" func="SetTextPos" />
+            <GetTextPos  file="Button.xml.lua" func="GetTextPos" />
+            <SetStatus   file="Button.xml.lua" func="SetStatus"   />
+            <GetStatus   file="Button.xml.lua" func="GetStatus"   />
+            <BeginUpdate file="Button.xml.lua" func="BeginUpdate"/>
+            <EndUpdate   file="Button.xml.lua" func="EndUpdate"  />
+        </method_def>
+
+        <!--自定义事件-->
+        <event_def>
+            <OnClick/>
+        </event_def>
+
+        <!--布局和交互-->
+        <objtemplate>
+            <children>
+                <obj id="button.bkg" class="FillObject">
+                    <attr>
+                        <width>father.width</width>
+                        <height>father.height</height>
+                    </attr>
+                    <children>
+                        <obj id="button.text" class="TextObject">
+                            <attr>
+                                <width>father.width</width>
+                                <height>father.height</height>
+                                <halign>center</halign>
+                                <valign>center</valign>
+                            </attr>
+                        </obj>
+                    </children>
+                </obj>
+            </children>
+            <eventlist>
+                <event name="OnInitControl"   file="Button.xml.lua" func="Button_InitControl" />
+                <event name="OnVisibleChange" file="Button.xml.lua" func="Button_VisibleChange"/>
+                <event name="OnEnableChange"  file="Button.xml.lua" func="Button_EnableChange"/>
+                <event name="OnFocusChange"   file="Button.xml.lua" func="Button_FocusChange" />
+                <event name="OnLButtonDown"   file="Button.xml.lua" func="Button_LButtonDown" />
+                <event name="OnLButtonUp"     file="Button.xml.lua" func="Button_LButtonUp" />
+                <event name="OnControlMouseEnter" file="Button.xml.lua" func="Button_ControlMouseEnter" />
+                <event name="OnControlMouseLeave" file="Button.xml.lua" func="Button_ControlMouseLeave" />
+            </eventlist>
+        </objtemplate>
+    </control>
+</xlue>

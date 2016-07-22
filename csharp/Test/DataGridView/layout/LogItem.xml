@@ -1,0 +1,103 @@
+<xlue>
+    <control class="LogItem">
+        <!--方法定义-->
+        <method_def>
+            <BindLog file="LogItem.xml.lua" func="BindLog"  />
+            <GetModalItem file="LogItem.xml.lua" func="GetModalItem"  />
+            <SetBackColor file="LogItem.xml.lua" func="SetBackColor" />
+        </method_def>
+
+        <!--自定义事件-->
+        <event_def>
+            <OnClick/>
+        </event_def>
+
+        <!--布局和交互-->
+        <objtemplate>
+            <children>
+                <obj id="logitem.bkg" class="FillObject">
+                    <attr>
+                        <width>father.width</width>
+                        <height>father.height</height>
+                        <srcpt>0,0</srcpt>
+                        <destpt>width,height</destpt>
+                    </attr>
+                    <children>
+                        <obj id="line.bottom" class="LineObject">
+                            <attr>
+                                <left>0</left>
+                                <top>father.height-1</top>
+                                <width>father.width</width>
+                                <height>1</height>
+                                <srcpt>0,0</srcpt>
+                                <destpt>width,0</destpt>
+                                <pen>pen.dot</pen>
+                                <color>system.lightgray</color>
+                            </attr>
+                        </obj>
+                        <obj id="logitem.id" class="TextObject">
+                            <attr>
+                                <left>3</left>
+                                <top>0</top>
+                                <width>40</width>
+                                <height>father.height</height>
+                                <halign>center</halign>
+                                <valign>center</valign>
+                            </attr>
+                        </obj>
+                        <obj id="logitem.type" class="TextObject">
+                            <attr>
+                                <left>40+3</left>
+                                <top>0</top>
+                                <width>30</width>
+                                <height>father.height</height>
+                                <halign>center</halign>
+                                <valign>center</valign>
+                            </attr>
+                        </obj>
+                        <obj id="logitem.ip" class="TextObject">
+                            <attr>
+                                <left>40+30+3*2</left>
+                                <top>0</top>
+                                <width>80</width>
+                                <height>father.height</height>
+                                <halign>center</halign>
+                                <valign>center</valign>
+                            </attr>
+                        </obj>
+                        <obj id="logitem.port" class="TextObject">
+                            <attr>
+                                <left>40+30+80+3*3</left>
+                                <top>0</top>
+                                <width>40</width>
+                                <height>father.height</height>
+                                <halign>center</halign>
+                                <valign>center</valign>
+                            </attr>
+                        </obj>
+                        <obj id="logitem.log" class="TextObject">
+                            <attr>
+                                <left>40+30+80+40+3*4</left>
+                                <top>0</top>
+                                <width>father.width-(40+20+80+40+3*4)</width>
+                                <height>father.height</height>
+                                <valign>center</valign>
+                            </attr>
+                        </obj>
+                    </children>
+                </obj>
+
+            </children>
+            <eventlist>
+                <event name="OnInitControl"   file="LogItem.xml.lua" func="LogItem_InitControl" />
+                <event name="OnVisibleChange" file="LogItem.xml.lua" func="LogItem_VisibleChange"/>
+                <event name="OnEnableChange"  file="LogItem.xml.lua" func="LogItem_EnableChange"/>
+                <event name="OnFocusChange"   file="LogItem.xml.lua" func="LogItem_FocusChange" />
+                <event name="OnLButtonDown"   file="LogItem.xml.lua" func="LogItem_LButtonDown" />
+                <event name="OnLButtonUp"     file="LogItem.xml.lua" func="LogItem_LButtonUp" />
+                <event name="OnControlMouseEnter" file="LogItem.xml.lua" func="LogItem_ControlMouseEnter" />
+                <event name="OnControlMouseLeave" file="LogItem.xml.lua" func="LogItem_ControlMouseLeave" />
+            </eventlist>
+        </objtemplate>
+    </control>
+</xlue>

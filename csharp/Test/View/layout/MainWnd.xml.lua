@@ -35,8 +35,6 @@ function close_btn_OnLButtonDown(self,name)
 	---定义动画结束的回调函数
 	local function onAniFinish(self,oldState,newState)
 		if newState == 4 then
-		----os.exit 效果等同于windows的exit函数，不推荐实际应用中直接使用
-			os.exit()
             util:Quit()
 		end
 	end
