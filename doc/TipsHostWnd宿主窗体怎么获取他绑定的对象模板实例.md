@@ -4,14 +4,14 @@ TipsHostWnd宿主窗体怎么获取他绑定的对象模板实例呢？
 ## 解释
 设置模板和DelayPopup，这是auto模式的tipshostwnd，这种情况下，只有在真正创建窗口系统对象时候，才会对模板实例化，创建对象树，然后绑定到hostwnd上面，先后顺序如下：
 
-1、对象模板实例化
-2、创建一个对象树，把对象实例绑定到对象树
-3、触发hostwnd的OnPreBindObjectTree事件
-4、对象树绑定到hostwnd
-5、触发hostwnd的OnBindObjectTree事件
-6、创建hostwnd的系统窗口对象
-7、hostwnd触发OnCreate等事件
-8、tipshostwnd触发OnDelayPopup事件
+1. 对象模板实例化
+2. 创建一个对象树，把对象实例绑定到对象树
+3. 触发hostwnd的OnPreBindObjectTree事件
+4. 对象树绑定到hostwnd
+5. 触发hostwnd的OnBindObjectTree事件
+6. 创建hostwnd的系统窗口对象
+7. hostwnd触发OnCreate等事件
+8. tipshostwnd触发OnDelayPopup事件
 
 上面的3-8阶段，都可以取到绑定到hostwnd的对象树，然后GetRootObject便可以取到模板实例化对象
 
