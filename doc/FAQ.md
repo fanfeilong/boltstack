@@ -6,9 +6,6 @@
 -------------------------
 - 这里是官方整理过的[FAQ](http://bolt.xunlei.com/faq.html)，可逐条细读。
 - 这里是[官方文档](http://xldoc.xl7.xunlei.com/0000000018/index.html)，左侧目录树好好利用，最好的办法就是对左侧目录树烂熟于胸，要查相关文档的时候就会很高效快捷。
-- 这里是非官方的[文档压缩包](http://bolt.xunlei.com/bbs/forum.php?mod=viewthread&tid=672&extra=page%3D1)，可能会过时（在线文档会及时更新内容），不过需要的同学可以试用。
-- 这里是非官方的[思维导图](http://bolt.xunlei.com/bbs/forum.php?mod=viewthread&tid=532&extra=page%3D1)，可以对照上一条的文档目录树，加深对BOLT体系层次结构的理解。
-- 这里是[水哥的控件教程](http://bolt.xunlei.com/bbs/forum.php?mod=viewthread&tid=204&extra=page%3D1)。
 - 这里是[BOLTSDK的git仓库](https://github.com/lurenpluto/BOLT_SDK)。
 - 这里是[BOLT扩展元对象的git仓库](https://github.com/lurenpluto/BXF)。
 - 这里是[官方示例控件库的git仓库](https://github.com/lurenpluto/BOLT_CONTROLS)。
@@ -27,30 +24,6 @@ end
 ```
 * 这是由于UI事件是在UI线程被同步触发的，如果事件响应函数被阻塞住，则会卡住界面的后续逻辑。使用`AsynCall`或者`SetOnceTimer`将待执行动作封装成一个消息并投递给UI线程，异步执行逻辑。由于是在同一个线程，不需要加锁。
 
-#### 如何调用WebBrowser的JavaScript函数？
-1. 在OnDocumentComplated事件里获取[GetRawWebBrowser](参考：http://bolt.xunlei.com/bbs/forum.php?mod=viewthread&tid=197&highlight=GetRawWebBrowser)发起调用。
-2. 在C++里转发调用。
-```
-IWebBrowser2* pWebBrowser2 = *(reinterpret_cast<IWebBrowser2**>(lua_touserdata(2)));
-IDispatch* pDispatchDocument = NULL;
-pWebBrowser2->get_Document(&pDispatchDocument);
-if(pDispatchDocument==NULL)
-{
-	return 0;
-}
-CComPtr<IHTMLDocument2> pHtmlDocument2 = NULL;
-pDispatchDocument->QueryInterface(IID_IHTMLDocument2,reinterpret_cast<void**>(&pHtmlDocument2);
-pDispatchDocument->Release();
-
-CComBSTR bStrLan = _T("javascript");
-CComBSTR bStrFun = _T"test2()";
-VARIANT var;
-var.vt = VT_EMPTY;
-CComPtr<IHTMLWindow2> pHtmlWindow2 = NULL;
-pHtmlDocument2->get_parentWindow(&pHtmlWindow2);
-pHtmlWindow2->execScript(bStrFun,bStrLan,&var);
-```
-
 #### 如何防止子对象的OnInitControl被调用多次
 如果在OnInitControl里通过AddChild添加子对象会导致子对象的OnInitControl被调用多次，此时建议使用AsyncCall去动态添加子对象，由于BOLT的时序是从父对象到子对象Bind，然后从子对象到父对象Init，从而一般建议在OnInitControl里获取子对象，但此时同步动态添加子对象会导致复杂的时序问题。
 
@@ -66,9 +39,6 @@ XLUE.h里有两个C接口：
 XLUE_API(XLUE_HOSTWND_HANDLE) XLUE_GetHostWndByID(const char* id);
 XLUE_API(OS_HOSTWND_HANDLE) XLUE_GetHostWndWindowHandle(XLUE_HOSTWND_HANDLE hHostWnd);[/color]
 ```
-
-#### BOLT里使用require会报错，如何组织模块。
-参考这个[模块分离的帖子](http://bolt.xunlei.com/bbs/forum.php?mod=viewthread&tid=205&highlight=%E6%A8%A1%E5%9D%97)。
 
 #### Lua的table元素是否是有序的吗？
 Lua的table分数组段和字典段，如果table只被当作数组用时，是有序的，当做字典用时则不保证顺序。
@@ -97,31 +67,16 @@ Lua的table分数组段和字典段，如果table只被当作数组用时，是�
 而自定义控件是继承自LayoutObject的，对自定义控件GetAttribute得到的只是一个空table，并不包含父类LayoutObject的那些xml配置属性。
 实际上我认为这个名字应该叫GetUserAttribute更贴切点吧。不过这个已经没法改了，其实只要稍加区分就可以。
 
-#### xar 资源包的继承关系怎么弄？
-见这个[关于资源包继承问题小结帖子](http://bolt.xunlei.com/bbs/forum.php?mod=viewthread&tid=683&highlight=%E8%B5%84%E6%BA%90%E5%8C%85)。
-
-#### 如果用预定义动画组合做复杂动画时太麻烦怎么办？
-用自定义动画，这边有个[自定义动画的帖子](http://bolt.xunlei.com/bbs/forum.php?mod=viewthread&tid=411&extra=page%3D1)。
-
 #### 如何做滚动条？
 BOLT的官方控件库里有List控件，里面有用到滚动条控件，可参考。
-
-#### 如何在C#里使用BOLT，如何在Delphi里使用BOLT？
-分别参考：
-* [DELPHI的例子](http://bolt.xunlei.com/bbs/forum.php?mod=forumdisplay&fid=43)
-* [BOLT.NET子论坛](http://bolt.xunlei.com/bbs/forum.php?mod=viewthread&tid=223&highlight=delphi)
 
 #### 如何监听键盘事件，处理键盘按键消息？
 处理LayoutObject的OnKeyDown、OnKeyUp、OnChar、OnHotKey等事件的文档。
 关于KeyCode则参考msdn：[VirualKeyCode](http://msdn.microsoft.com/en-us/library/windows/desktop/dd375731(v=vs.85).aspx)
-另外这边有个辅助代码：[KeyCode.lua](http://bolt.xunlei.com/bbs/forum.php?mod=viewthread&tid=409&extra=page%3D1)
 
 #### 如何自定义事件？
 - [xml里自定义事件的指南](http://xldoc.xl7.xunlei.com/0000000018/00000000180001000007.html)
 - [描述了在自定义控件里自定义事件，以及使用FireExtEvent在控件内部触发自定义事件](http://xldoc.xl7.xunlei.com/0000000018/0000000018000100002900006.html)
-- [一个例子代码](http://bolt.xunlei.com/bbs/forum.php?mod=viewthread&tid=470)
-- [自定义事件参数和内置事件参数不同的说明](http://bolt.xunlei.com/bbs/forum.php?mod=viewthread&tid=171)
-
 
 #### 如何理解事件重定向，比如`RoureToFather`？
 参考文档：
@@ -130,31 +85,20 @@ BOLT的官方控件库里有List控件，里面有用到滚动条控件，可参
 
 #### 如何做系统托盘？
 - [最小Win32系统托盘示例](https://bobobobo.wordpress.com/2009/03/),在BOLT下，最好弄一个后台窗口做消息转发和处理，配合系统托盘。
-- [系统托盘分享代码](http://bolt.xunlei.com/bbs/home.php?mod=space&uid=78)
-- [一个例子](http://bolt.xunlei.com/bbs/forum.php?mod=viewthread&tid=634&highlight=%E6%89%98%E7%9B%98)。
-- [另一个例子](http://bolt.xunlei.com/bbs/forum.php?mod=viewthread&tid=708&extra=page%3D1)。
-- [MenuWnd，打开后，鼠标点击非Menu区域，如何将MenuWnd关掉哦？](http://bolt.xunlei.com/bbs/forum.php?mod=viewthread&tid=557&highlight=%E6%89%98%E7%9B%98][color=#FF0000]
 
 #### 如何注册全局函数
-首先，参考[XLLRT_RegisterGlobalAPI用法](http://bolt.xunlei.com/bbs/forum.php?mod=viewthread&tid=267&highlight=XLLRT%5C_RegisterGlobalAPI)
-
-其次，另一种做法：
 ```
-void LOG(const char* str)
-{
+void LOG(const char* str){
   std::cout<<str<<std::endl;
 }
-static const luaL_Reg s_utilXLRTAPI[] =
-{
+static const luaL_Reg s_utilXLRTAPI[] ={
     {"LOG", LOG},
     {NULL,NULL}
 };
-void RegisterGlobalFunc(XL_LRT_ENV_HANDLE hEnv)
-{
+void RegisterGlobalFunc(XL_LRT_ENV_HANDLE hEnv){
     lua_State* luaState = XLLRT_GetLuaState(XLLRT_GetRuntime(hEnv,NULL));
     int pos = 0;
-    while(s_utilXLRTAPI[pos].func)
-    {
+    while(s_utilXLRTAPI[pos].func){
         lua_pushcfunction(luaState,s_utilXLRTAPI[pos].func);
         lua_setglobal(luaState,s_utilXLRTAPI[pos].name);
         pos++;
@@ -162,20 +106,11 @@ void RegisterGlobalFunc(XL_LRT_ENV_HANDLE hEnv)
 }
 ```
 
-#### BOLT有哪些全局函数?
-[BOLT提供的全局函数](http://bolt.xunlei.com/bbs/forum.php?mod=viewthread&tid=33&page=1&extra=#pid92)
-
-#### Angle动画执行后如何保持最后一刻的状态?
-参考：
-[帖子1](http://bolt.xunlei.com/bbs/home.php?mod=space&uid=78) [帖子2](http://bolt.xunlei.com/bbs/forum.php?mod=viewthread&tid=454) [帖子3](http://bolt.xunlei.com/bbs/home.php?mod=space&uid=3893) [帖子4](http://bolt.xunlei.com/bbs/forum.php?mod=viewthread&tid=709#lastpost)
-
 #### BOLT下如何注册C++类，对象到Lua环境？
 参考HelloBOLT第7课。这里也有一个QQ群成员?天蝎莮提供的[BOLT注册C++类到Lua环境的辅助宏定义以及示例](http://blog.163.com/lvan100@yeah/blog/static/6811721420142982815555/)。
 
 #### 如何对窗口或者某个UIObject以及其子对象做截图？
-使用RenderFactory:RenderObject(UIObject srcObject,Bitmap destBitmap)，参考[RenderFactory的文档](http://xldoc.xl7.xunlei.com/0000000018/000000001800001000020000100008.html)。
-也可以参考这个帖子，[青青三叶草的说明](http://bolt.xunlei.com/bbs/forum.php?mod=viewthread&tid=23&highlight=%E5%BF%AB%E7%85%A7)，
-里面提到了对HostWnd可以使用XL_BITMAP_HANDLE GetWindowBitmap()获取整个窗口的截图。
+使用RenderFactory:RenderObject(UIObject srcObject,Bitmap destBitmap)，参考[RenderFactory的文档](http://xldoc.xl7.xunlei.com/0000000018/000000001800001000020000100008.html)。里面提到了对HostWnd可以使用XL_BITMAP_HANDLE GetWindowBitmap()获取整个窗口的截图。
 如果是RealObject，则使用[RealObject:GetWindowBitmap()方法](http://xldoc.xl7.xunlei.com/0000000018/00000000180000200002000010000900005.html)。
 
 #### 遇到如下链接错误怎么办？
