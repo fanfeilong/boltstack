@@ -1,0 +1,5 @@
+## 问题
+由于实窗口对象的特殊性，实窗口对象会永远在非实窗口对象上面，非实窗口对象的zorde只和所有非实窗口对象之间有效，实窗口对象的zorder只在实窗口对象之间有效，无法通过设置zorder让TexuteObject置于WebbrowserObject之上？
+
+## 解释
+WebbrowseObject属于实窗口对象，普通的非实窗口对象是没办法放置到上面的，要覆盖webo的话就得做成HostWnd。
