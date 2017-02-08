@@ -1,0 +1,5 @@
+ClipSubBindBitmap是从依赖源位图的子位图，效率很高，但是由于和源位图共享buffer，所以使用时候需要注意：
+
+1. ClipSubBindBitmap出来的子位图和源位图共享buffer，所以对位图修改也会映射到源位图上面
+1. ClipSubBindBitmap出来的子位图，生命周期受源位图制约，在源位图释放后，也就无效了，不能再使用了
+2. ClipSubBindBitmap出来的子位图，如果生命周期想要超出源位图，那么需要clone一份，但是会增加内存大小

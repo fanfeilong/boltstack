@@ -1,0 +1,5 @@
+## 问题
+我想监听CaptionObject的OnLButtonUp事件用来得到拖动窗口结束转台并做一些事情？
+
+## 解释
+CaptionObject目前由于系统的限制，而不能响应OnLButtonUp事件，拖放开始和结束，可以响应所在hostwnd的OnEnterResizeMove和OnExitResizeMove事件，来监听拖动开始和结束事件。
